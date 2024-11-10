@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh1358jwr74gn"]
+
+[ext_resource type="PackedScene" uid="uid://daekel57svcgj" path="res://Weapons/hitscan_weapon.tscn" id="1_cf2cs"]
+[ext_resource type="PackedScene" uid="uid://26vngsq5ynqr" path="res://Weapons/sparks.tscn" id="2_5s6tf"]
+[ext_resource type="PackedScene" uid="uid://bkc800uuo7bfs" path="res://Assets/ak47.fbx" id="2_j6ud5"]
+[ext_resource type="PackedScene" uid="uid://bjwdwfagfwkbq" path="res://muzzle_flash.tscn" id="3_f4r7r"]
+
+[node name="AK-47" node_paths=PackedStringArray("weapon_mesh", "muzzle_flash") instance=ExtResource("1_cf2cs")]
+weapon_mesh = NodePath("AK-47")
+weapon_damage = 30
+muzzle_flash = NodePath("MuzzleFlash")
+sparks = ExtResource("2_5s6tf")
+automatic = true
+
+[node name="AK-47" parent="." index="0" instance=ExtResource("2_j6ud5")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.405, 0.07, -0.189684)
+
+[node name="MuzzleFlash" parent="." index="3" instance=ExtResource("3_f4r7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.407, -0.123921, -1.59542)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bunlb873l2a5o"]
+
+[ext_resource type="PackedScene" uid="uid://daekel57svcgj" path="res://Weapons/hitscan_weapon.tscn" id="1_rquq8"]
+[ext_resource type="PackedScene" uid="uid://26vngsq5ynqr" path="res://Weapons/sparks.tscn" id="2_efo4a"]
+[ext_resource type="PackedScene" uid="uid://8wwkxti6xksk" path="res://Assets/glockblack_.fbx" id="2_qk4qo"]
+[ext_resource type="PackedScene" uid="uid://bjwdwfagfwkbq" path="res://muzzle_flash.tscn" id="3_m2lb5"]
+
+[node name="Glock" node_paths=PackedStringArray("weapon_mesh", "muzzle_flash") instance=ExtResource("1_rquq8")]
+weapon_mesh = NodePath("Glock")
+muzzle_flash = NodePath("MuzzleFlash")
+sparks = ExtResource("2_efo4a")
+ammo_type = 1
+
+[node name="Glock" parent="." index="2" instance=ExtResource("2_qk4qo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.456456, 0.395834, -9.17886)
+
+[node name="MuzzleFlash" parent="." index="3" instance=ExtResource("3_m2lb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.472751, -0.0690427, -0.676877)

@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://buaahrun0ejb7"]
+
+[ext_resource type="Script" path="res://UI/buy_screen.gd" id="1_xbl3u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilux1"]
+font_size = 32
+
+[node name="BuyScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xbl3u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PrimaryWContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/PrimaryWContainer"]
+layout_mode = 2
+text = "Primary Weapons"
+label_settings = SubResource("LabelSettings_ilux1")
+horizontal_alignment = 1
+
+[node name="AKButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/PrimaryWContainer"]
+layout_mode = 2
+text = "AK-47
+"
+
+[node name="ScarButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/PrimaryWContainer"]
+layout_mode = 2
+text = "SCAR"
+
+[node name="SecondaryWContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/SecondaryWContainer"]
+layout_mode = 2
+text = "Secondary Weapons"
+label_settings = SubResource("LabelSettings_ilux1")
+horizontal_alignment = 1
+
+[node name="DeagleButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/SecondaryWContainer"]
+layout_mode = 2
+text = "DEAGLE"
+
+[node name="GlockButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/SecondaryWContainer"]
+layout_mode = 2
+text = "GLOCK"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/PrimaryWContainer/AKButton" to="." method="_on_ak_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/SecondaryWContainer/GlockButton" to="." method="_on_glock_button_pressed"]

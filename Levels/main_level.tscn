@@ -1,0 +1,247 @@
+[gd_scene load_steps=10 format=3 uid="uid://wf1as7xifn42"]
+
+[ext_resource type="Material" uid="uid://brc5joqtktg07" path="res://Levels/Materials/GrayMaterial.tres" id="1_4yshw"]
+[ext_resource type="Script" path="res://Levels/main_level.gd" id="1_cmvhd"]
+[ext_resource type="PackedScene" uid="uid://e6m1qvj0b6wk" path="res://Hazards/lava.tscn" id="3_m8kxi"]
+[ext_resource type="PackedScene" uid="uid://dpys7m6fn72vo" path="res://UI/control.tscn" id="4_sbome"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nm4cp"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pmied"]
+sky_material = SubResource("ProceduralSkyMaterial_nm4cp")
+
+[sub_resource type="Environment" id="Environment_84o7o"]
+background_mode = 2
+sky = SubResource("Sky_pmied")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a7ww1"]
+resource_local_to_scene = true
+size = Vector2(14.3, 12.6)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5kl3v"]
+points = PackedVector3Array(-7.15, 0, -6.3, -7.15, 0, 6.3, 7.15, 0, -6.3, 7.15, 0, 6.3)
+
+[node name="MainLevel" type="Node3D"]
+script = ExtResource("1_cmvhd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_84o7o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="Spawn_CT" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 2, -1.65)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(7, 4, 16.1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Spawn_CT"]
+
+[node name="Spawn_CT_Corridor" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4, -0.6, -0.25)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(3.8, 2.8, 2.6)
+
+[node name="Spawn_CT_Corridor_to_B" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.15256e-07, 2.6, 22.78)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(37.7, 4, 7)
+
+[node name="Spawn_CT_Corridor2" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.7, -0.6, -0.25)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(3.8, 2.8, 2.6)
+
+[node name="Mid" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.45, 0.15, -1.25)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(36.7, 4.3, 30)
+
+[node name="Mid_Pool" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, -3.4, -0.95)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(14.3, 2.8, 12.6)
+
+[node name="Site_A" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.55, 0.15, 30.35)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(22.9, 4.3, 23)
+
+[node name="Spawn_T" type="CSGBox3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.1, -0.01, 0.15)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+flip_faces = true
+size = Vector3(7, 4, 16.1)
+
+[node name="Mid_to_A" type="CSGCylinder3D" parent="Spawn_CT/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 25.5, 0, 16.3)
+flip_faces = true
+radius = 2.0
+height = 5.4
+
+[node name="LevelObjects" type="Node3D" parent="."]
+
+[node name="Spawn_CT_Stairs" type="CSGBox3D" parent="LevelObjects"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.55, 1.15, 4.98)
+material_override = ExtResource("1_4yshw")
+use_collision = true
+size = Vector3(2.8, 2.1, 6.9)
+
+[node name="Step_1" type="CSGBox3D" parent="LevelObjects/Spawn_CT_Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0.4, 0)
+material_override = ExtResource("1_4yshw")
+operation = 2
+use_collision = true
+size = Vector3(1.1, 1.5, 6.9)
+
+[node name="Step_2" type="CSGBox3D" parent="LevelObjects/Spawn_CT_Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.8, 9.53674e-07)
+material_override = ExtResource("1_4yshw")
+operation = 2
+use_collision = true
+size = Vector3(1.8, 0.7, 6.9)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19, 1, -6)
+
+[node name="LavaPools" type="Node3D" parent="."]
+
+[node name="Lava" parent="LavaPools" instance=ExtResource("3_m8kxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -1.1, -2.6)
+
+[node name="MeshInstance3D" parent="LavaPools/Lava" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199999, -0.4, 0)
+mesh = SubResource("PlaneMesh_a7ww1")
+
+[node name="OmniLight3D" parent="LavaPools/Lava" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+omni_range = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LavaPools/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199999, -0.4, 0)
+shape = SubResource("ConvexPolygonShape3D_5kl3v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 426.0
+offset_top = 229.0
+offset_right = -426.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host
+"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Adress"
+alignment = 1
+
+[node name="TeamSelectMenu" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 426.0
+offset_top = 229.0
+offset_right = -426.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TeamSelectMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TeamSelectMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/TeamSelectMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select Team"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CTButton" type="Button" parent="CanvasLayer/TeamSelectMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select CT
+"
+
+[node name="TButton" type="Button" parent="CanvasLayer/TeamSelectMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select T"
+
+[node name="LobbyMenu" parent="CanvasLayer" instance=ExtResource("4_sbome")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+
+[node name="Spawn_1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9493, 0.745829, -1.73203)
+
+[node name="Spawn_2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20356, 1.01849, -1.56497)
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TeamSelectMenu/MarginContainer/VBoxContainer/CTButton" to="." method="_on_ct_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TeamSelectMenu/MarginContainer/VBoxContainer/TButton" to="." method="_on_t_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/Lobby/JoinTeam1" to="." method="_on_join_team_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/Lobby/JoinTeam2" to="." method="_on_join_team_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/LobbyMenu/Lobby/Start" to="." method="_on_start_pressed"]
+
+[editable path="LavaPools/Lava"]
+[editable path="CanvasLayer/LobbyMenu"]
